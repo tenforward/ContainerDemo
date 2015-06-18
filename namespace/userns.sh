@@ -1,4 +1,4 @@
-#!/bin/bash
-unshare --user --uts -- hostname test
+#!/bin/bash -x
+unshare --user --uts -- sh -c "id && hostname test"
 read
-unshare --user --map-root-user --uts -- sh -c "hostname test && hostname"
+unshare --user --map-root-user --uts -- sh -c "id && hostname test && hostname && read"

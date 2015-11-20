@@ -16,6 +16,8 @@ ip netns exec $NETNS iptables -L -n -v
 read
 ip link add name $VETH-host type veth peer name $VETH-ns
 read
+ip link show | grep $VETH # on host
+read
 ip link set $VETH-ns netns $NETNS
 read
 ip link show | grep $VETH # on host
@@ -25,6 +27,8 @@ read
 ip addr add 10.10.10.10/24 dev $VETH-host
 read
 ip link set $VETH-host up
+read
+ip addr show | grep veth
 read
 ip netns exec $NETNS ip addr add 10.10.10.11/24 dev $VETH-ns
 read
